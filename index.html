@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" />
+    <title>Programación I | Final | Alvarez, Barrientos | Carrito</title>
+    
+    <link type="image/png" sizes="32x32" rel="icon" href=".../icons8-store-ios7-32.png">
+    <link type="image/png" sizes="32x32" rel="icon" href=".../icons8-lip gloss-ios_filled-32.png"> 
+    <link type="image/png" sizes="32x32" rel="icon" href=".../icons8-makeup brush-ios_filled-32.png"> 
+    <link type="image/png" sizes="32x32" rel="icon" href=".../icons8-eyelash-ios11-32.png"> 
+    <link type="image/png" sizes="32x32" rel="icon" href=".../icons8-cart-ios11-32.png">
+    <link type="image/png" sizes="32x32" rel="icon" href=".../icons8-pay-ios7-32.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+
+                
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                    Categorias
+                </button>
+                
+                <div class="offcanvas offcanvas-start fade" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="staticBackdropLabel">Bienvenido!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul>
+                            <li><a  href="#" data-category="todos"><img width="25" height="25" src="https://img.icons8.com/ios/50/online-store.png" alt="online-store"/> Todos</a></li>
+                            <li><a  href="#" data-category="Brochas"><img width="25" height="25" src="https://img.icons8.com/ios-filled/50/cosmetic-brush.png" alt="cosmetic-brush"/> Brochas</a></li>
+                            <li><a  href="#" data-category="Labios"><img width="25" height="25" src="https://img.icons8.com/ios-filled/50/lip-gloss.png" alt="lip-gloss"/> Labios</a></li>
+                            
+                            <li><a  href="#" data-category="Ojos"><img width="25" height="25" src="https://img.icons8.com/ios-glyphs/60/elelash.png" alt="elelash"/> Ojos</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <img src="img/benefit-logo.png" alt="logo benefit" class="navbar-brand">
+                
+                
+                
+                <div class="cart-widget">
+                    <button id="btnShowCart" class="btn-primary"><img src="svg/icon-cart.png" alt="icon carrito">
+                        <span class="cart-count">0</span>
+                        <span class="cart-total">$0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1>*:･ﾟ✧*:･ﾟ Alvarez, Barrientos | Carrito *:･ﾟ✧*:･ﾟ</h1>
+            <div id="productosGrid" class="productos-grid"></div>
+        </div>
+    </main>
+    
+
+    <!-- Oferta Especial -->
+    <div id="ofertaEspecial" class="oferta-especial">
+        <p>¡Oferta! 20% de descuento en <span id="ofertaCategoria"></span></p>
+    </div>
+
+
+
+    <!-- Modales -->
+    <div id="productoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    <div id="carritoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div id="carritoContent"></div>
+            <p>Total: $<span id="cartTotalAmount">0</span></p>
+            <button id="btnCheckout" class="btn-primary"><img width="25" height="25" src="https://img.icons8.com/ios/50/FFFFFF/card-in-use.png" alt="card-in-use"/>Ir a pagar</button>
+        </div>
+    </div>
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ir a pagar</h2>
+            <form id="checkoutForm">
+                <label for="nombre">Nombre*</label>
+                <input type="text" id="nombre" required>
+                <label for="telefono">Teléfono*</label>
+                <input type="tel" id="telefono" required>
+                <label for="email">Email*</label>
+                <input type="email" id="email" required>
+                <label for="direccion">Dirección*</label>
+                <input type="text" id="direccion" required>
+                <label for="fechaEntrega">Fecha de Entrega*</label>
+                <input type="date" id="fechaEntrega" required>
+                <label for="metodoPago">Método de Pago*</label>
+                <select id="metodoPago" required>
+                    <option value="credit">Tarjeta de Crédito</option>
+                    <option value="debit">Tarjeta de Débito</option>
+                    <option value="mp">Mercado Pago</option>
+                </select>
+                <div id="cuotasContainer" class="hidden">
+                    <label for="cuotas">Cuotas</label>
+                    <select id="cuotas">
+                        <option value="1">1 cuota</option>
+                        <option value="3">3 cuotas</option>
+                        <option value="6">6 cuotas</option>
+                        <option value="12">12 cuotas</option>
+                    </select>
+                </div>
+                <div class="checkoutBtns">
+                    <button type="submit" class="btn-secondary btnPagar">Finalizar Compra</button>
+                    <button type="button" id="btnCancelCheckout" class="btn-secondary"><i class="bi bi-x"></i>Cancelar</button>
+                </div>
+
+                
+            </form>
+        </div>
+    </div>
+    <footer>
+        <ul>
+            
+            <li>Profesor Carlos Ferrer</li>
+            <li><a href="mailto:carlos.ferrer@davinci.edu.ar?subject=P1%20-%20Consulta%20-%20DW2[M|T|N][A|B]%20-%20Apellido,%20Nombre" target="_blank">carlos.ferrer@davinci.edu.ar</a></li>
+            <li>Programación 1</li>
+            <li>Final</li>
+        </ul>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="parcial.js"></script>
+</body>
+</html>
